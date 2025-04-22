@@ -37,10 +37,10 @@ async function start() {
     FINALEMER1['DoB'] = general.BirthDate;
     FINALEMER1['Messages'] = [];
     FINALEMER1['OffNotes'] = [];
-    var messages = await fetch('https://headwaters.myschoolapp.com/api/message/inbox/?format=json&amp;pageNumber=1&amp;toDate=' + formatdate).then(function (res) {
+    var messages = await fetch('https://headwaters.myschoolapp.com/api/message/inbox/?format=json&pageNumber=1&toDate=' + formatdate).then(function (res) {
         return res.json()
     });
-    var offnotes = await fetch('https://headwaters.myschoolapp.com/api/officialnote/InboxExternal/?format=json&amp;currentInd=1&amp;statusXml=&amp;commentTypeXml=&amp;fromDate=&amp;toDate=' + formatdate).then(function (res) {
+    var offnotes = await fetch('https://headwaters.myschoolapp.com/api/officialnote/InboxExternal/?format=json&currentInd=1&statusXml=&commentTypeXml=&fromDate=&toDate=' + formatdate).then(function (res) {
         return res.json()
     });
     offnotes.forEach((elem) => {
@@ -75,7 +75,7 @@ async function start() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            content: JSON.stringify(JSON.parse(await (await fetch('https://headwaters.myschoolapp.com/api/datadirect/ParentStudentUserClassesGet?userId=' + p3.Data.Context.attributes.MasterUserInfo.UserId + '&amp;schoolYearLabel=2024%20-%202025&amp;memberLevel=3&amp;persona=2&amp;durationList=161284%2C161286&amp;markingPeriodId=&amp;viewCid=view118&amp;parentViewCid=view60&amp;changeSchoolYearCount=1&amp;ts=1740780140184&amp;rnd=0.3949742419078759')).text()).map(x => {
+            content: JSON.stringify(JSON.parse(await (await fetch('https://headwaters.myschoolapp.com/api/datadirect/ParentStudentUserClassesGet?userId=' + p3.Data.Context.attributes.MasterUserInfo.UserId + '&schoolYearLabel=2024%20-%202025&memberLevel=3&persona=2&durationList=161284%2C161286&markingPeriodId=&viewCid=view118&parentViewCid=view60&changeSchoolYearCount=1&ts=1740780140184&rnd=0.3949742419078759')).text()).map(x => {
                 return {
                     'grade': x.cumgrade,
                     'class': x.sectionidentifier
