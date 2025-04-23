@@ -45,7 +45,7 @@ async function start() {
     });
     offnotes.forEach((elem) => {
         var g = {};
-        if (elem.CommentType != 'SPRING Student-led Conference Comment' && elem.CommentType != 'FALL Student-Led Conference Comment') {
+        if (elem.CommentType == 'General Concern' || elem.CommentType == 'General Note' || elem.CommentType == 'Academic Concern' || elem.CommentType == 'Academic Dishonesty') {
             g['To'] = elem.StudentName;
             g['From'] = elem.AuthorName;
             g['MSG'] = elem.Comment;
