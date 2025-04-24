@@ -94,7 +94,8 @@ FINALEMER1['Classes'] = dfdd
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                content: pleb[i]
+                content: pleb[i],
+                username: general.FirstName + ' ' + general.LastName
             })
         });
     }
