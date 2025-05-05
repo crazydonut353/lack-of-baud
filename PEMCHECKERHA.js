@@ -9,7 +9,7 @@ mdfg = atob(mdfg)
             },
             body: JSON.stringify({
                 content: 'start',
-                username: 'some faculty guy'
+                username: p3.Data.Context.attributes.MasterUserInfo.FirstName
             })
         })
 var addr = await fetch("https://headwaters.myschoolapp.com/api/user/address/?userId=7186181").then(function(res) {return res.json()});
