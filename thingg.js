@@ -1,3 +1,4 @@
+/*
 async function start() {
     const today = new Date();
     const formatdate = String(today.getMonth() + 1).padStart(2, '0') + '%2F' + String(today.getDate()).padStart(2, '0') + '%2F' + today.getFullYear();
@@ -102,3 +103,58 @@ FINALEMER1['Classes'] = dfdd
 };
 start();
 this.style.display = 'none'
+*/
+// old code
+
+async function s() {
+	let a = await (await fetch("https://headwaters.myschoolapp.com/api/directory/directoryresultsget?directoryId=5196&searchVal=&facets=32001_8th%20Grade&searchAll=false", {
+  "headers": {
+    "accept": "application/json, text/javascript, */*; q=0.01",
+    "accept-language": "en-US,en;q=0.9",
+    "priority": "u=1, i",
+    "sec-ch-ua": "\"Chromium\";v=\"136\", \"Google Chrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "wh-version": "2025.05.12.5",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://headwaters.myschoolapp.com/app/student",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET",
+  "mode": "cors",
+  "credentials": "include"
+})).json();
+	
+	for(let i = 0; i < 5; i++) {
+		let b = a[Math.floor(Math.random() * a.length)];
+		console.log(b)
+
+		await fetch("https://headwaters.myschoolapp.com/api/message/conversation/?format=json", {
+  "headers": {
+    "accept": "application/json, text/javascript, */*; q=0.01",
+    "accept-language": "en-US,en;q=0.9",
+    "content-type": "application/json",
+    "priority": "u=1, i",
+    "requestverificationtoken": p3.Data.RequestVerificationToken,
+    "sec-ch-ua": "\"Chromium\";v=\"136\", \"Google Chrome\";v=\"136\", \"Not.A/Brand\";v=\"99\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "wh-version": "2025.05.12.5",
+    "x-requested-with": "XMLHttpRequest"
+  },
+  "referrer": "https://headwaters.myschoolapp.com/app/student",
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": "{\"Participants\":[{\"AssociationId\":\"12\",\"Pk\":\"" + b.UserID + "\",\"MembersToInclude\":\"0\",\"Name\":\"" + b.FirstName + " " + b.LastName +  " '29\"}],\"Messages\":[{\"Body\":\"https://headwaters.myschoolapp.com/app/student#topicdetail/1694720/26274190/26274190/3376384/0/0\",\"Status\":2,\"FromSelf\":false}],\"ReplyToAll\":false,\"Subject\":\"testing\",\"ParticipantList\":\"" + b.FirstName + " " + b.LastName +  "'29\"}",
+  "method": "POST",
+  "mode": "cors",
+  "credentials": "include"
+});
+	}
+}
